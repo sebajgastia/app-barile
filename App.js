@@ -1,11 +1,13 @@
 import { StyleSheet } from 'react-native'
-import ShopNavigation from './src/navigation/ShopNavigation';
+import BottomTabNavigator from './src/navigation/BottomTabNavigator';
 
 
 export default function App() {
     
+
   return( 
-  <ShopNavigation/>
+
+  <BottomTabNavigator/>
  )
     
 

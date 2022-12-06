@@ -1,33 +1,36 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { FlatList } from 'react-native'
 import React from 'react'
+import Griditem from '../components/Griditem';
+import { CATEGORIES } from '../data/Categories';
+
 
 const CategoriesProducts = ({navigation}) => {
-  return (
-    <View style={styles.contenedor}>
-      
-      <Text style={styles.categorias} >Categorias</Text>
-   
-      <Button title='Ir a Helados' onPress={() => navigation.navigate('Helados')}/>
+ 
+  const handleselectedCategory = (item) =>{
+    navigation.navigate('Helados', {
+      CategoryID:item.id,
+      name: item.title 
 
-    </View>
+    })
+  }
+  
+  
+  const renderItem = ({item}) => (
+    <Griditem item={item} onSelected={handleselectedCategory}/>
   )
+
+  
+  return (
+    <FlatList
+    data={CATEGORIES}
+    keyExtractor={(item) => item.id}
+    renderItem={renderItem}
+    numColumns={2}/>
+
+  )
+  
 }
 
 export default CategoriesProducts
 
-const styles = StyleSheet.create({
-  categorias:{
-    backgroundColor:'red',
-    fontSize:30,
-    fontFamily:'BebasNeue',
-    color:'white'
 
-  },
-
-  contenedor:{
-    flex:1,
-    alignItems:'center',
-    justifyContent:'center',
-  }
-
-});
