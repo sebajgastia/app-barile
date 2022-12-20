@@ -1,21 +1,36 @@
 import { FlatList } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Itemhelados from '../components/Itemhelados'
 import { HELADOS } from '../data/Helados'
+import { useSelector, useDispatch, connect } from 'react-redux'
+import { filteredHelados, selectHelados } from '../store/actions/Helados.action'
 
 const CategoryHelados = ({navigation, route}) => {
 
-  const icecream = HELADOS.filter( ( icecream ) => icecream.category === route.params.CategoryID)
+  const dispatch = useDispatch()
+
+  const category = useSelector((state => state.categories.selected));
+
+  const categoryHelado = useSelector ((state) => state.Helados. filteredHelados);
+
+  useEffect(() => {
+    dispatch (filteredHelados (category.id))
+  }, [])
+
+
+  
+
+  //const icecream = HELADOS.filter( ( icecream ) => icecream.category === route.params.CategoryID)
 
 
 
   const handleselectedCategory = (item) =>{
-    navigation.navigate('Detalle', {
-      productID:item.id,
+    dispatch(selectHelados (item.id))
+    navigation.navigate('Detalle', {   
       name: item.name,
 
-    })
-  }
+    });
+  };
   
   
   const renderHeladositem = ({item}) => (
@@ -25,7 +40,7 @@ const CategoryHelados = ({navigation, route}) => {
   
   return (
     <FlatList
-    data={icecream}
+    data={categoryHelado}
     keyExtractor={(item) => item.id}
     renderItem={renderHeladositem}
     
@@ -34,7 +49,7 @@ const CategoryHelados = ({navigation, route}) => {
   )
 }
 
-export default CategoryHelados;
+export default  connect () (CategoryHelados);
 
 
 

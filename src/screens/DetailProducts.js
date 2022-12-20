@@ -1,7 +1,11 @@
 import { StyleSheet, Text, View,Button } from 'react-native'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const DetailProducts = ({navigation}) => {
+
+  const helado = useSelector ((state) => state.bread.selected)
+
   return (
     <View style={styles.contenedor}>
       <Text style={styles.detalle}>DetalleProducto</Text>

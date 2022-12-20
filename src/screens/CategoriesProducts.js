@@ -1,15 +1,20 @@
 import { FlatList } from 'react-native'
 import React from 'react'
 import Griditem from '../components/Griditem';
-import { CATEGORIES } from '../data/Categories';
+import { useSelector, useDispatch, connect } from 'react-redux';
+import { selectedCategory } from '../store/actions/Category.action';
 
 
 const CategoriesProducts = ({navigation}) => {
  
+ 
+  const categories = useSelector((state) => state.categories.categories);
+  const dispatch = useDispatch();
+
   const handleselectedCategory = (item) =>{
+    dispatch (selectedCategory(item.id))
     navigation.navigate('Helados', {
-      CategoryID:item.id,
-      name: item.title 
+      name: item.title
 
     })
   }
@@ -22,7 +27,7 @@ const CategoriesProducts = ({navigation}) => {
   
   return (
     <FlatList
-    data={CATEGORIES}
+    data={categories}
     keyExtractor={(item) => item.id}
     renderItem={renderItem}
     numColumns={2}/>
@@ -31,6 +36,6 @@ const CategoriesProducts = ({navigation}) => {
   
 }
 
-export default CategoriesProducts
+export default connect () (CategoriesProducts);
 
 
