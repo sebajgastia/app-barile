@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import Itemhelados from '../components/Itemhelados'
 import { HELADOS } from '../data/Helados'
 import { useSelector, useDispatch, connect } from 'react-redux'
-import { filteredHelados, selectHelados } from '../store/actions/Helados.action'
+import { filteredHelados, selectedHelados, selectHelados } from '../store/actions/Helados.action'
 
 const CategoryHelados = ({navigation, route}) => {
 
@@ -25,7 +25,7 @@ const CategoryHelados = ({navigation, route}) => {
 
 
   const handleselectedCategory = (item) =>{
-    dispatch(selectHelados (item.id))
+    dispatch(selectedHelados (item.id))
     navigation.navigate('Detalle', {   
       name: item.name,
 

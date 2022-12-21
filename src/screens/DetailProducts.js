@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 const DetailProducts = ({navigation}) => {
 
-  const helado = useSelector ((state) => state.bread.selected)
+  const helado = useSelector ((state) => state.Helados.selected)
 
   return (
     <View style={styles.contenedor}>
