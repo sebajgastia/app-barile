@@ -2,7 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-const Cartitem = (item, onDelete) => {
+const Cartitem = ({item, onDelete}) => {
   return (
     <View style={styles.item}>
      <View>

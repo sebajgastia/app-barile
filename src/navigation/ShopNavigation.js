@@ -6,6 +6,7 @@ import DetailProducts from '../screens/DetailProducts'
 import Indexscreen from '../screens/Indexscreen'
 import { COLORS } from "../constants/Colors";
 import { useFonts } from "expo-font";
+import OrdersScreen from "../screens/OrdersScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,7 @@ export default ShopNavigation = () => {
                     title:route.params.name,
                 })}/>
                 <Stack.Screen name="Detalle" component={DetailProducts}/>
+                <Stack.Screen name="Orders" component={OrdersScreen}/>
             </Stack.Navigator>
        
     )
